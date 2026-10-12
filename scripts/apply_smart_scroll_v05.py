@@ -19,7 +19,7 @@ s=s.replace('"SCROLL DEBUG v0.3 | visible viewport only"','"SCROLL DEBUG v0.5 | 
 p.write_text(s)
 p=base/"WebtoonViewer.kt"
 s=p.read_text()
-old="""        if (config.usePageTransitions) {
+old="""        if (config.usePageTransitions && !readerPreferences.smartScrollEnabled.get()) {
             recycler.smoothScrollBy(0, scrollDistance)
         } else {
             recycler.scrollBy(0, scrollDistance)
