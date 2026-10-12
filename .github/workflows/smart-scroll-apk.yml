@@ -14,7 +14,7 @@ jobs:
         with:
           distribution: temurin
           java-version-file: .github/.java-version
-      - uses: android-actions/setup-android@v3
+      # GitHub Ubuntu runners include Android SDK; avoid sdkmanager bootstrap failure.
       - uses: gradle/actions/setup-gradle@v4
       - name: Apply Smart Scroll v0.1
         run: python3 scripts/apply_smart_scroll_v01.py
