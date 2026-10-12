@@ -46,3 +46,9 @@ new="""        if (readerPreferences.smartScrollEnabled.get()) {
 if s.count(old)!=1: raise SystemExit("viewer anchor mismatch")
 p.write_text(s.replace(old,new))
 print("v0.5 gutter navigation applied")
+
+# Keep package identity unchanged; Android requires a strictly higher versionCode.
+gradle=Path("app/build.gradle.kts")
+g=gradle.read_text()
+if g.count("versionCode = 37")!=1: raise SystemExit("Unexpected versionCode")
+gradle.write_text(g.replace("versionCode = 37","versionCode = 38",1))
