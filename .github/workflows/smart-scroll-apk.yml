@@ -25,17 +25,6 @@ jobs:
         run: python3 scripts/apply_smart_scroll_probe_v04.py
       - name: Apply Smart Scroll v0.5
         run: python3 scripts/apply_smart_scroll_v05.py
-      - name: Require persistent signing key
-        env:
-          SMART_SCROLL_KEYSTORE_B64: ${{ secrets.SMART_SCROLL_KEYSTORE_B64 }}
-          SMART_SCROLL_STORE_PASSWORD: ${{ secrets.SMART_SCROLL_STORE_PASSWORD }}
-          SMART_SCROLL_KEY_ALIAS: ${{ secrets.SMART_SCROLL_KEY_ALIAS }}
-          SMART_SCROLL_KEY_PASSWORD: ${{ secrets.SMART_SCROLL_KEY_PASSWORD }}
-        run: |
-          test -n "$SMART_SCROLL_KEYSTORE_B64" || { echo "Missing persistent keystore: cannot guarantee in-place upgrade"; exit 1; }
-          test -n "$SMART_SCROLL_STORE_PASSWORD" && test -n "$SMART_SCROLL_KEY_ALIAS" && test -n "$SMART_SCROLL_KEY_PASSWORD" || exit 1
-          echo "$SMART_SCROLL_KEYSTORE_B64" | base64 -d > app/smart-scroll-signing.jks
-          printf 'storeFile=smart-scroll-signing.jks\nstorePassword=%s\nkeyAlias=%s\nkeyPassword=%s\n' "$SMART_SCROLL_STORE_PASSWORD" "$SMART_SCROLL_KEY_ALIAS" "$SMART_SCROLL_KEY_PASSWORD" > keystore.properties
       - name: Build debug APK
         run: chmod +x gradlew && ./gradlew assembleDebug --no-daemon
       - uses: actions/upload-artifact@v4
