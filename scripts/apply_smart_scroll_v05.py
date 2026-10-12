@@ -43,7 +43,7 @@ new="""        if (readerPreferences.smartScrollEnabled.get()) {
         } else {
             recycler.scrollBy(0, scrollDistance)
         }"""
-if s.count(old)!=1: raise SystemExit("viewer anchor mismatch")
+if s.count(old)!=1: raise SystemExit(f"viewer anchor mismatch: expected 1, got {s.count(old)}")
 p.write_text(s.replace(old,new))
 print("v0.5 gutter navigation applied")
 
