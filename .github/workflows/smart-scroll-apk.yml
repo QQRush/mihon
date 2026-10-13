@@ -33,6 +33,8 @@ jobs:
         run: python3 scripts/apply_smart_scroll_debug_alpha.py
       - name: Apply Smart Scroll v0.8 single jump
         run: python3 scripts/apply_smart_scroll_v08.py
+      - name: Apply Smart Fit settings v0.9
+        run: python3 scripts/apply_smart_fit_settings_v09.py
       - name: Restore permanent signing key
         env:
           KEYSTORE_B64: ${{ secrets.MIHON_KEYSTORE_BASE64 }}
@@ -62,6 +64,6 @@ jobs:
           done
       - uses: actions/upload-artifact@v4
         with:
-          name: mihon-smart-scroll-v0.8-signed
+          name: mihon-smart-scroll-v0.9-settings-signed
           path: app/build/outputs/apk/debug/*.apk
           if-no-files-found: error
