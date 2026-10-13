@@ -25,10 +25,35 @@ jobs:
         run: python3 scripts/apply_smart_scroll_probe_v04.py
       - name: Apply Smart Scroll v0.5
         run: python3 scripts/apply_smart_scroll_v05.py
-      - name: Build debug APK
+      - name: Restore permanent signing key
+        env:
+          KEYSTORE_B64: ${{ secrets.MIHON_KEYSTORE_BASE64 }}
+          KEYSTORE_PASSWORD: ${{ secrets.MIHON_KEYSTORE_PASSWORD }}
+          KEY_ALIAS: ${{ secrets.MIHON_KEY_ALIAS }}
+        run: |
+          python3 - <<'PY'
+          import base64, os, pathlib
+          encoded = os.environ['KEYSTORE_B64'].strip()
+          if not encoded or not os.environ['KEYSTORE_PASSWORD'] or not os.environ['KEY_ALIAS']:
+              raise SystemExit('Missing signing secret')
+          encoded = ''.join(x for x in encoded.splitlines() if not x.startswith('-----'))
+          pathlib.Path('mihon-smart-scroll.jks').write_bytes(base64.b64decode(encoded, validate=True))
+          PY
+      - name: Build signed debug APK
+        env:
+          MIHON_GITHUB_RELEASE: "true"
+          storeFile: ${{ github.workspace }}/mihon-smart-scroll.jks
+          storePassword: ${{ secrets.MIHON_KEYSTORE_PASSWORD }}
+          keyAlias: ${{ secrets.MIHON_KEY_ALIAS }}
+          keyPassword: ${{ secrets.MIHON_KEYSTORE_PASSWORD }}
         run: chmod +x gradlew && ./gradlew assembleDebug --no-daemon
+      - name: Verify signature
+        run: |
+          for apk in app/build/outputs/apk/debug/*.apk; do
+            "${ANDROID_HOME}/build-tools/36.0.0/apksigner" verify --verbose "$apk"
+          done
       - uses: actions/upload-artifact@v4
         with:
-          name: mihon-smart-scroll-v0.5-debug
+          name: mihon-smart-scroll-v0.5-permanent-signature
           path: app/build/outputs/apk/debug/*.apk
           if-no-files-found: error
