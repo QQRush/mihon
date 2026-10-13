@@ -25,6 +25,8 @@ jobs:
         run: python3 scripts/apply_smart_scroll_probe_v04.py
       - name: Apply Smart Scroll v0.5
         run: python3 scripts/apply_smart_scroll_v05.py
+      - name: Apply Smart Scroll v0.6 top trim
+        run: python3 scripts/apply_smart_scroll_v06.py
       - name: Restore permanent signing key
         env:
           KEYSTORE_B64: ${{ secrets.MIHON_KEYSTORE_BASE64 }}
@@ -54,6 +56,6 @@ jobs:
           done
       - uses: actions/upload-artifact@v4
         with:
-          name: mihon-smart-scroll-v0.5-permanent-signature
+          name: mihon-smart-scroll-v0.6-signed
           path: app/build/outputs/apk/debug/*.apk
           if-no-files-found: error
