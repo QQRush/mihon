@@ -59,6 +59,8 @@ jobs:
         run: python3 scripts/apply_smart_scroll_v0181.py
       - name: Apply revised v0.17 navigation
         run: python3 scripts/apply_smart_scroll_v017r.py
+      - name: Apply edge-gap experiment
+        run: python3 scripts/apply_smart_scroll_v017e.py
       - name: Restrict test builds to arm64-v8a
         run: python3 scripts/apply_arm64_only.py
       - name: Restore permanent signing key
@@ -90,6 +92,6 @@ jobs:
           done
       - uses: actions/upload-artifact@v4
         with:
-          name: mihon-smart-scroll-v0.17-revised-arm64-signed
+          name: mihon-smart-scroll-v0.17-edge-test-arm64-signed
           path: app/build/outputs/apk/debug/*arm64-v8a*.apk
           if-no-files-found: error
