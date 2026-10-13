@@ -77,6 +77,6 @@ s=s.replace('if (gutter != null) "GUTTER" else "FULL"', 'if (boundaryTarget != n
 p.write_text(s)
 p=Path("app/build.gradle.kts")
 s=p.read_text()
-if s.count("versionCode = 54")!=1:raise SystemExit("version mismatch")
-p.write_text(s.replace("versionCode = 54","versionCode = 55",1))
+if s.count("versionCode = 52")!=1:raise SystemExit("version mismatch")
+p.write_text(s.replace("versionCode = 52","versionCode = 55",1))
 print("v0.19 boundary destination correction installed")
