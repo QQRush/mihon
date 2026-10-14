@@ -99,6 +99,8 @@ jobs:
         run: python3 scripts/apply_smart_scroll_v035.py
       - name: Reject isolated ink borders v0.36
         run: python3 scripts/apply_smart_scroll_v036.py
+      - name: Search 50 percent past viewport after isolated line v0.37
+        run: python3 scripts/apply_smart_scroll_v037.py
       - name: Restrict test builds to arm64-v8a
         run: python3 scripts/apply_arm64_only.py
       - name: Restore permanent signing key
@@ -130,6 +132,6 @@ jobs:
           done
       - uses: actions/upload-artifact@v4
         with:
-          name: mihon-smart-scroll-v0.36-isolated-line-arm64-signed
+          name: mihon-smart-scroll-v0.37-isolated-extended50-arm64-signed
           path: app/build/outputs/apk/debug/*arm64-v8a*.apk
           if-no-files-found: error
