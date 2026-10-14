@@ -79,6 +79,8 @@ jobs:
         run: python3 scripts/apply_smart_scroll_v025.py
       - name: Apply first-safe-gutter scan v0.26
         run: python3 scripts/apply_smart_scroll_v026.py
+      - name: Apply content-aware gutter v0.27
+        run: python3 scripts/apply_smart_scroll_v027.py
       - name: Restrict test builds to arm64-v8a
         run: python3 scripts/apply_arm64_only.py
       - name: Restore permanent signing key
@@ -110,6 +112,6 @@ jobs:
           done
       - uses: actions/upload-artifact@v4
         with:
-          name: mihon-smart-scroll-v0.26-first-gutter-arm64-signed
+          name: mihon-smart-scroll-v0.27-content-aware-arm64-signed
           path: app/build/outputs/apk/debug/*arm64-v8a*.apk
           if-no-files-found: error
