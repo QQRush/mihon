@@ -97,6 +97,8 @@ jobs:
         run: python3 scripts/apply_smart_scroll_v034.py
       - name: Apply 3px gutter margin v0.35
         run: python3 scripts/apply_smart_scroll_v035.py
+      - name: Reject isolated ink borders v0.36
+        run: python3 scripts/apply_smart_scroll_v036.py
       - name: Restrict test builds to arm64-v8a
         run: python3 scripts/apply_arm64_only.py
       - name: Restore permanent signing key
@@ -128,6 +130,6 @@ jobs:
           done
       - uses: actions/upload-artifact@v4
         with:
-          name: mihon-smart-scroll-v0.35-gutter-plus3-arm64-signed
+          name: mihon-smart-scroll-v0.36-isolated-line-arm64-signed
           path: app/build/outputs/apk/debug/*arm64-v8a*.apk
           if-no-files-found: error
