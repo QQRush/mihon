@@ -33,10 +33,6 @@ part=part.replace(a,'''                // A complete horizontal gap already sepa
 a='''                blank[row] = white >= 85 || black >= 85'''
 assert part.count(a)==1
 part=part.replace(a,'''                blank[row] = white >= 85 || black >= 85''')
-# Do not land on a gap very close to the bottom: next content would remain clipped.
-a='''                if (start <= firstRow || end >= sh - 3 || (end - start) * content.height / sh < 50) continue'''
-assert part.count(a)==1
-part=part.replace(a,'''                if (start <= firstRow || end >= sh - 3 || (end - start) * content.height / sh < 50) continue''')
 s=s[:start]+part+s[end:]
 a='            repeatDecision,\n'
 assert s.count(a)==1
