@@ -26,7 +26,7 @@ s=s.replace(anchor,"""    private var contentDecision = "CONTENT: WAIT"
 
 """+anchor)
 start=s.index("    fun nextContentAlignedDistance(content:")
-end=s.index("    // Top Trim is independent",start)
+end=s.index("    fun extendedLanding(recycler:",start)
 part=s[start:end]
 a="""        chosenLandingY = -1
         if (content.width < 2"""
