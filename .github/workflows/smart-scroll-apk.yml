@@ -126,6 +126,7 @@ jobs:
         run: python3 scripts/apply_smart_scroll_v047.py
       - name: Apply earliest post-PASSED gap v0.48
         run: python3 scripts/apply_smart_scroll_v048.py
+      # Retry v0.49 after fixing patch script scan-origin anchor
       - name: Apply post-PASSED landing v0.49
         run: python3 scripts/apply_smart_scroll_v049.py
       - name: Restrict test builds to arm64-v8a
