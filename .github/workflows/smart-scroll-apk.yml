@@ -3,6 +3,11 @@ on:
   workflow_dispatch:
   push:
     branches: [feature/smart-scroll]
+    paths:
+      - '.github/workflows/smart-scroll-apk.yml'
+concurrency:
+  group: smart-scroll-apk-${{ github.ref }}
+  cancel-in-progress: true
 permissions:
   contents: read
 jobs:
