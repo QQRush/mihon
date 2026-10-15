@@ -122,6 +122,8 @@ jobs:
         run: python3 scripts/apply_smart_scroll_v045.py
       - name: Apply closing-border guard v0.46
         run: python3 scripts/apply_smart_scroll_v046.py
+      - name: Apply first post-PASSED gap v0.47
+        run: python3 scripts/apply_smart_scroll_v047.py
       - name: Restrict test builds to arm64-v8a
         run: python3 scripts/apply_arm64_only.py
       - name: Restore permanent signing key
@@ -153,6 +155,6 @@ jobs:
           done
       - uses: actions/upload-artifact@v4
         with:
-          name: mihon-smart-scroll-v0.46-border-guard-arm64-signed
+          name: mihon-smart-scroll-v0.47-first-gap-arm64-signed
           path: app/build/outputs/apk/debug/*arm64-v8a*.apk
           if-no-files-found: error
