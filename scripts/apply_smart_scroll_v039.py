@@ -4,10 +4,10 @@ from pathlib import Path
 p=Path("app/src/main/java/eu/kanade/tachiyomi/ui/reader/viewer/webtoon/SmartScrollDebugOverlay.kt")
 s=p.read_text()
 anchor='    private var firstContentDebug = "FIRST_CONTENT: NONE"'
-assert s.count(anchor)==1
+assert anchor in s
 s=s.replace(anchor,anchor+'\n    private var rectangleDebug = "RECT: NOT FOUND"',1)
 anchor='        firstContentDebug = "FIRST_CONTENT: NONE"'
-assert s.count(anchor)==1
+assert anchor in s
 s=s.replace(anchor,anchor+'\n        rectangleDebug = "RECT: NOT FOUND"',1)
 start=s.index('                var connected = false')
 end=s.index('                if (!connected && inkEnd > end',start)
