@@ -55,6 +55,8 @@ s=s.replace(a,a+'''
             clearFit()
             return
         }
+        // Probe regardless of visual-debug preference.
+        debugOverlay.probeSmartFit(recycler, readerPreferences.smartFitMaxReduction.get())
         val target = debugOverlay.fitTarget()
         if (target <= recycler.height || target > recycler.height * 13 / 10 ||
             recycler.width < 20) {
