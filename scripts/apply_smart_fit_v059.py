@@ -31,11 +31,11 @@ s=p.read_text()
 if "fun firstContentAfterBoundary(content: View, boundary: Int): Int" not in s:
     old_patch = Path("scripts/apply_smart_scroll_v018.py").read_text()
     begin = old_patch.index("    fun firstContentAfterBoundary(content: View, boundary: Int): Int")
-    finish = old_patch.index('\\n\\n"""+s[b:]', begin)
-    helper = old_patch[begin:finish]
+    finish = old_patch.index('"""+s[b:]', begin)
+    helper = old_patch[begin:finish].rstrip()
     marker = "    override fun onDraw(canvas: Canvas) {"
     assert s.count(marker)==1
-    s=s.replace(marker,helper+"\\n\\n"+marker,1)
+    s=s.replace(marker,helper+"\n\n"+marker,1)
 assert s.count('"SCROLL DEBUG v0.58 | gap-start fit"')==1
 s=s.replace('"SCROLL DEBUG v0.58 | gap-start fit"','"SCROLL DEBUG v0.59 | fit next aligned"',1)
 p.write_text(s)
