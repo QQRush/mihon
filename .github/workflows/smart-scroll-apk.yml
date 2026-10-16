@@ -133,7 +133,7 @@ jobs:
         run: python3 scripts/apply_smart_scroll_v050.py
       - name: Extended preserved top v0.51
         run: python3 scripts/apply_smart_scroll_v051.py
-      - name: Smart Fit diagnostic only v0.52
+      - name: Smart Fit diagnostic with colored boundary v0.52
         run: python3 scripts/apply_smart_fit_v052.py
       - name: Restrict test builds to arm64-v8a
         run: python3 scripts/apply_arm64_only.py
