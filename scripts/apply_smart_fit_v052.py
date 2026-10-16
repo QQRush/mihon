@@ -9,9 +9,14 @@ a='    private var extendedDebug = "EXT: WAIT"'
 assert s.count(a)==1
 s=s.replace(a,a+'''
     private var smartFitDebug = "SMART FIT: WAIT"
+    private var smartFitMarkerY = -1
+    private var smartFitMarkerText = ""
+    private var smartFitMarkerEligible = false
     // Diagnostic only. A RecyclerView item is not necessarily one panel.
     fun probeSmartFit(recycler: androidx.recyclerview.widget.RecyclerView, tolerance: Int) {
         val h = recycler.height
+        smartFitMarkerY = -1
+        smartFitMarkerText = ""
         if (h <= 0) { smartFitDebug = "SMART FIT: NO_VIEW"; invalidate(); return }
         val maxPercent = tolerance.coerceIn(1, 30)
         val items = (0 until recycler.childCount).map { recycler.getChildAt(it) }
@@ -22,6 +27,13 @@ s=s.replace(a,a+'''
         } else {
             val extra = ((candidate.height.toLong() - h) * 100L / h).toInt()
             val scale = (h.toLong() * 100L / candidate.height).toInt()
+            smartFitMarkerEligible = extra <= maxPercent
+            smartFitMarkerY = candidate.bottom
+            smartFitMarkerText = if (smartFitMarkerEligible) {
+                "FIT CANDIDATE " + extra + "% -> " + scale + "% (NOT APPLIED)"
+            } else {
+                "FIT TOO LONG " + extra + "% (LIMIT " + maxPercent + "%)"
+            }
             smartFitDebug = "SMART FIT ITEM: " + candidate.height + "/" + h +
                 " OVER=" + extra + "% SCALE=" + scale + "% " +
                 (if (extra <= maxPercent) "CANDIDATE (UNVERIFIED)" else "TOO_LONG") +
@@ -35,6 +47,25 @@ assert s.count(a)==1
 s=s.replace(a,a+'\n            smartFitDebug,',1)
 assert s.count('"SCROLL DEBUG v0.51 | post-pass preserved top"')==1
 s=s.replace('"SCROLL DEBUG v0.51 | post-pass preserved top"','"SCROLL DEBUG v0.52 | fit diagnostic only"',1)
+a='    override fun onDraw(canvas: Canvas) {'
+assert s.count(a)==1
+s=s.replace(a,a+'''
+        // Actual item boundary, not a guessed panel boundary.
+        if (smartFitMarkerY in 24 until height - 3) {
+            val fitPaint = Paint(Paint.ANTI_ALIAS_FLAG)
+            fitPaint.color = if (smartFitMarkerEligible) Color.CYAN else Color.YELLOW
+            fitPaint.strokeWidth = 3f
+            canvas.drawLine(0f, smartFitMarkerY.toFloat(), width.toFloat(),
+                smartFitMarkerY.toFloat(), fitPaint)
+            fitPaint.textSize = 21f
+            val labelY = (smartFitMarkerY - 7).toFloat()
+            val labelWidth = fitPaint.measureText(smartFitMarkerText)
+            val bgPaint = Paint()
+            bgPaint.color = 0xBB000000.toInt()
+            canvas.drawRect(0f, labelY - 23f, labelWidth + 12f, labelY + 4f, bgPaint)
+            canvas.drawText(smartFitMarkerText, 6f, labelY, fitPaint)
+        }
+''',1)
 p.write_text(s)
 p=base/"viewer/webtoon/WebtoonViewer.kt"
 s=p.read_text()
