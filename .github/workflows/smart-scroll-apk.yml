@@ -147,7 +147,7 @@ jobs:
         run: python3 scripts/apply_smart_fit_v057.py
       - name: Long white gap fit v0.58
         run: python3 scripts/apply_smart_fit_v058.py
-      - name: Align Next after Smart Fit v0.59
+      - name: Align Next after Smart Fit v0.59 (restore helper)
         run: python3 scripts/apply_smart_fit_v059.py
       - name: Restrict test builds to arm64-v8a
         run: python3 scripts/apply_arm64_only.py
