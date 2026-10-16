@@ -69,17 +69,16 @@ s=s.replace(a,a+'''
 p.write_text(s)
 p=base/"viewer/webtoon/WebtoonViewer.kt"
 s=p.read_text()
-# Hook into the existing debug update method before scroll navigation.
-# Its debugOverlay.update(...) arguments have changed since early patches.
-a='''            debugOverlay.update('''
+# Hook into scroll debug method without relying on its historical update signature.
+a='    private fun updateSmartScrollDebug() {'
 assert s.count(a)==1
-line_start=s.index(a)
-line_end=s.index("\n",line_start)
-s=s[:line_end]+'''
-            // Diagnostic only: never touches scroll positions or image scale.
-            if (readerPreferences.smartFitEnabled.get()) {
-                debugOverlay.probeSmartFit(recycler, readerPreferences.smartFitMaxReduction.get())
-            }'''+s[line_end:]
+s=s.replace(a,a+'''
+        if (readerPreferences.smartScrollEnabled.get() &&
+            readerPreferences.smartScrollVisualDebug.get() &&
+            readerPreferences.smartFitEnabled.get()) {
+            debugOverlay.probeSmartFit(recycler, readerPreferences.smartFitMaxReduction.get())
+        }
+''',1)
 p.write_text(s)
 p=base/"setting/ReaderPreferences.kt"
 s=p.read_text()
