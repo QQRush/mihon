@@ -139,7 +139,7 @@ jobs:
         run: python3 scripts/apply_smart_fit_v053.py
       - name: Smart Fit viewport-zero probe v0.54
         run: python3 scripts/apply_smart_fit_v054.py
-      - name: Experimental live Smart Fit v0.55
+      - name: Experimental live Smart Fit v0.55 (hook fix)
         run: python3 scripts/apply_smart_fit_v055.py
       - name: Restrict test builds to arm64-v8a
         run: python3 scripts/apply_arm64_only.py
