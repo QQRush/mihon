@@ -107,8 +107,9 @@ s=s.replace(a,'''        fitImage.scaleType = ImageView.ScaleType.FIT_XY
         fitImage.visibility = View.GONE
         frame.addView(fitImage, FrameLayout.LayoutParams(MATCH_PARENT, MATCH_PARENT))
 '''+a,1)
-# After scroll listener update, refresh snapshot only if it was not a fit jump.
-a='''                    updateSmartScrollDebug()'''
+# The debug hook is in the RecyclerView listener, indentation may differ.
+a='''                    onScrolled()
+                    updateSmartScrollDebug()'''
 assert s.count(a)==1
 s=s.replace(a,a+'''
                     if (!fitting) applyFitIfEligible()''',1)
