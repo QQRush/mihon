@@ -107,12 +107,14 @@ s=s.replace(a,'''        fitImage.scaleType = ImageView.ScaleType.FIT_XY
         fitImage.visibility = View.GONE
         frame.addView(fitImage, FrameLayout.LayoutParams(MATCH_PARENT, MATCH_PARENT))
 '''+a,1)
-# The debug hook is in the RecyclerView listener, indentation may differ.
-a='''                    onScrolled()
-                    updateSmartScrollDebug()'''
+# Insert after the first scroll callback invocation, independently of debug hook formatting.
+a='''                    onScrolled()'''
 assert s.count(a)==1
 s=s.replace(a,a+'''
-                    if (!fitting) applyFitIfEligible()''',1)
+                    if (!fitting) {
+                        updateSmartScrollDebug()
+                        applyFitIfEligible()
+                    }''',1)
 # When the reader is first displayed, evaluate initial viewport.
 a='''        frame.post { updateSmartScrollDebug() }'''
 assert s.count(a)==1
