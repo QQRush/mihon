@@ -74,7 +74,7 @@ s=p.read_text()
 a='''            debugOverlay.update('''
 assert s.count(a)==1
 line_start=s.index(a)
-line_end=s.index("\\n",line_start)
+line_end=s.index("\n",line_start)
 s=s[:line_end]+'''
             // Diagnostic only: never touches scroll positions or image scale.
             if (readerPreferences.smartFitEnabled.get()) {
