@@ -157,14 +157,8 @@ jobs:
         run: python3 scripts/apply_smart_fit_v062.py
       - name: Smart Fit visible interruption standby v0.63
         run: python3 scripts/apply_smart_fit_v063.py
-      - name: Safe fallback overlap v0.64
-        run: python3 scripts/apply_smart_scroll_v064.py
-      - name: Land after visible gutter v0.65
-        run: python3 scripts/apply_smart_scroll_v065.py
-      - name: Share Smart Fit visible gap with normal scroll v0.66
-        run: python3 scripts/apply_smart_scroll_v066.py
-      - name: Preserve thin line in lookahead v0.67
-        run: python3 scripts/apply_smart_scroll_v067.py
+      - name: Isolate Fit standby from SUPER SAFE v0.68
+        run: python3 scripts/apply_smart_scroll_v068.py
       - name: Restrict test builds to arm64-v8a
         run: python3 scripts/apply_arm64_only.py
       - name: Restore permanent signing key
@@ -196,6 +190,6 @@ jobs:
           done
       - uses: actions/upload-artifact@v4
         with:
-          name: mihon-smart-scroll-v0.67-preserved-lookahead-arm64-signed
+          name: mihon-smart-scroll-v0.68-super-safe-fit-standby-arm64-signed
           path: app/build/outputs/apk/debug/*arm64-v8a*.apk
           if-no-files-found: error
