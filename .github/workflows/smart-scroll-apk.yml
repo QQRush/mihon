@@ -149,6 +149,8 @@ jobs:
         run: python3 scripts/apply_smart_fit_v058.py
       - name: Align Next after Smart Fit v0.59 (restore helper)
         run: python3 scripts/apply_smart_fit_v059.py
+      - name: Movement debug v0.60 (no navigation changes)
+        run: python3 scripts/apply_smart_debug_v060.py
       - name: Restrict test builds to arm64-v8a
         run: python3 scripts/apply_arm64_only.py
       - name: Restore permanent signing key
@@ -180,6 +182,6 @@ jobs:
           done
       - uses: actions/upload-artifact@v4
         with:
-          name: mihon-smart-scroll-v0.59-fit-next-aligned-arm64-signed
+          name: mihon-smart-scroll-v0.60-movement-debug-arm64-signed
           path: app/build/outputs/apk/debug/*arm64-v8a*.apk
           if-no-files-found: error
