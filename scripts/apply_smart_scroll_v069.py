@@ -19,8 +19,8 @@ part=part.replace(a,'''                            val landing = if (afterIsolat
                             } else (top - 8).coerceAtLeast(1)''',1)
 # Ensure normal crossing case cannot return a border outside the search window.
 s=s[:start]+part+s[end:]
-assert s.count('"SCROLL DEBUG v0.63 | visible gap standby"')==1
-s=s.replace('"SCROLL DEBUG v0.63 | visible gap standby"','"SCROLL DEBUG v0.69 | scroll preserved lookahead"',1)
+assert s.count('"SCROLL DEBUG v0.68 | fit standby / super safe scroll"')==1
+s=s.replace('"SCROLL DEBUG v0.68 | fit standby / super safe scroll"','"SCROLL DEBUG v0.69 | scroll preserved lookahead"',1)
 p.write_text(s)
 p=Path("app/src/main/java/eu/kanade/tachiyomi/ui/reader/viewer/webtoon/WebtoonViewer.kt")
 s=p.read_text()
