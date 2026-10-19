@@ -178,6 +178,8 @@ jobs:
       # Retry v0.76 after correcting FIT_NEXT diagnostic anchor
       - name: Guard previous-art sliver after FIT NEXT v0.76
         run: python3 scripts/apply_smart_fit_v076.py
+      - name: FIT NEXT geometry diagnostics v0.77
+        run: python3 scripts/apply_smart_fit_v077.py
       - name: Restrict test builds to arm64-v8a
         run: python3 scripts/apply_arm64_only.py
       - name: Restore permanent signing key
@@ -209,6 +211,6 @@ jobs:
           done
       - uses: actions/upload-artifact@v4
         with:
-          name: mihon-smart-scroll-v0.76-fit-remnant-arm64-signed
+          name: mihon-smart-scroll-v0.77-fit-boundary-diagnostic-arm64-signed
           path: app/build/outputs/apk/debug/*arm64-v8a*.apk
           if-no-files-found: error
