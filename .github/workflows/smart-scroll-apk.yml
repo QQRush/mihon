@@ -167,6 +167,8 @@ jobs:
       # Retry after v0.71 anchor correction (e09d365)
       - name: Complete current gap using Smart Scroll lookahead v0.71
         run: python3 scripts/apply_smart_scroll_v071.py
+      - name: Restore 100 percent normal fallback v0.72
+        run: python3 scripts/apply_smart_scroll_v072.py
       - name: Restrict test builds to arm64-v8a
         run: python3 scripts/apply_arm64_only.py
       - name: Restore permanent signing key
@@ -198,6 +200,6 @@ jobs:
           done
       - uses: actions/upload-artifact@v4
         with:
-          name: mihon-smart-scroll-v0.71-current-gap-end-arm64-signed
+          name: mihon-smart-scroll-v0.72-full-fallback-arm64-signed
           path: app/build/outputs/apk/debug/*arm64-v8a*.apk
           if-no-files-found: error
