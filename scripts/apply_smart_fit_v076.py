@@ -69,9 +69,9 @@ s=s.replace(a,'"SCROLL DEBUG v0.76 | fit remnant guard"',1)
 p.write_text(s)
 p=base/"WebtoonViewer.kt"
 s=p.read_text()
-a='''"FIT_NEXT probeEnd=" + distance + " align=" + nextContent +'''
+a='''" corrected=" + distance + " align=" + nextContent +'''
 assert s.count(a)==1
-s=s.replace(a,'''"FIT_NEXT probeEnd=" + distance + " align=" + nextContent +
+s=s.replace(a,'''" corrected=" + distance + " align=" + nextContent +
                         " " + debugOverlay.lastFitInkTrace +''',1)
 p.write_text(s)
 p=Path("app/build.gradle.kts")
