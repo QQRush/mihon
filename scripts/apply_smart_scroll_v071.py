@@ -10,7 +10,7 @@ part=s[start:end]
 a="fun extendedLanding(recycler: androidx.recyclerview.widget.RecyclerView, afterIsolated: Boolean = false): Int?"
 assert part.count(a)==1
 part=part.replace(a,"fun extendedLanding(recycler: androidx.recyclerview.widget.RecyclerView, afterIsolated: Boolean = false, currentGutter: Int? = null): Int?",1)
-a='''                if ((afterIsolated && start <= resumeRow) ||
+a='''                if ((afterIsolated && stop <= resumeRow) ||
                     (!afterIsolated && (start >= edge || stop <= edge))) {'''
 assert part.count(a)==1
 part=part.replace(a,'''                val gapStartPx = from + start * span / sh
@@ -18,7 +18,7 @@ part=part.replace(a,'''                val gapStartPx = from + start * span / sh
                 val continuesCurrent = currentGutter != null && !afterIsolated &&
                     gapStartPx <= currentGutter && gapStopPx > currentGutter &&
                     gapStartPx < h && gapStopPx > h
-                if ((afterIsolated && start <= resumeRow) ||
+                if ((afterIsolated && stop <= resumeRow) ||
                     (!afterIsolated && !continuesCurrent && (start >= edge || stop <= edge))) {''',1)
 # In current-gutter mode, only a matching crossing band is allowed to return.
 a='''                if (stop >= sh - 3) {'''
