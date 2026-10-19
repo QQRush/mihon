@@ -162,6 +162,8 @@ jobs:
       # Rebuild after v0.69 patch assertion fix (3705ee3)
       - name: Independent Smart Scroll preserved lookahead v0.69
         run: python3 scripts/apply_smart_scroll_v069.py
+      - name: First rejected gutter diagnostics v0.70
+        run: python3 scripts/apply_smart_scroll_v070.py
       - name: Restrict test builds to arm64-v8a
         run: python3 scripts/apply_arm64_only.py
       - name: Restore permanent signing key
@@ -193,6 +195,6 @@ jobs:
           done
       - uses: actions/upload-artifact@v4
         with:
-          name: mihon-smart-scroll-v0.69-independent-preserved-arm64-signed
+          name: mihon-smart-scroll-v0.70-first-rejection-debug-arm64-signed
           path: app/build/outputs/apk/debug/*arm64-v8a*.apk
           if-no-files-found: error
