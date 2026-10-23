@@ -39,19 +39,16 @@ It is particularly useful on **E-Ink readers**, where instantaneous, predictable
 
 ## Download
 
-**Latest production build (optimized, signed, ARM64):**
+**[Download Mihon Smart Scroll v0.78 — Production APK](https://github.com/QQRush/mihon/releases/tag/v0.78-smart-scroll)**
 
-[**Smart Scroll Production — GitHub Actions**](https://github.com/QQRush/mihon/actions/workflows/smart-scroll-production.yml)
+Open the release page, then under **Assets** download `Mihon-Smart-Scroll-v0.78-arm64.apk`. You can also download `SHA256SUMS.txt` to verify the file.
 
-1. Open the latest **successful** workflow run.
-2. Under **Artifacts**, download `mihon-smart-scroll-v0.78-production-arm64-signed` (or the newest production artifact).
-3. Extract the ZIP and install the APK on an **ARM64 Android device**.
+The production APK is signed, optimized with R8, and supports **ARM64 Android devices**. Its package ID is `app.mihon.dev`, separate from official Mihon; upgrades require the same signing key. Back up your library before installing or upgrading.
 
-The production workflow builds an optimized Release APK using R8 and resource shrinking. The current custom build uses the package ID `app.mihon.dev`, to stay separate from the official Mihon app. It is signed using this fork's signing key; updates require the same signing key.
+**All published releases:** [GitHub Releases](https://github.com/QQRush/mihon/releases)
 
-**Development/debug builds:** [Smart Scroll APK workflow](https://github.com/QQRush/mihon/actions/workflows/smart-scroll-apk.yml). Use these for reporting issues or inspecting visual diagnostics.
+**Development/debug builds:** [Smart Scroll APK workflow](https://github.com/QQRush/mihon/actions/workflows/smart-scroll-apk.yml). Use these only for testing and visual diagnostics.
 
-GitHub may require you to sign in to download Actions artifacts. These are **workflow artifacts**, not GitHub Releases.
 
 ## Getting started
 
