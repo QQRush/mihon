@@ -1,0 +1,218 @@
+name: Smart Scroll Production APK
+on:
+  workflow_dispatch:
+  push:
+    branches: [feature/smart-scroll]
+    paths:
+      - '.github/workflows/smart-scroll-production.yml'
+concurrency:
+  group: smart-scroll-production-${{ github.ref }}
+  cancel-in-progress: true
+permissions:
+  contents: read
+jobs:
+  apk:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version-file: .github/.java-version
+      - uses: gradle/actions/setup-gradle@v4
+      - name: Apply Smart Scroll v0.1
+        run: python3 scripts/apply_smart_scroll_v01.py
+      - name: Apply visual debug v0.2
+        run: python3 scripts/apply_smart_scroll_debug_v02.py
+      - name: Apply separator probe v0.3
+        run: python3 scripts/apply_smart_scroll_probe_v03.py
+      - name: Apply gutter safety filter v0.4
+        run: python3 scripts/apply_smart_scroll_probe_v04.py
+      - name: Apply Smart Scroll v0.5
+        run: python3 scripts/apply_smart_scroll_v05.py
+      - name: Apply Smart Scroll v0.6 top trim
+        run: python3 scripts/apply_smart_scroll_v06.py
+      - name: Apply Smart Scroll v0.7 top trim
+        run: python3 scripts/apply_smart_scroll_v07.py
+      - name: Apply translucent debug bar
+        run: python3 scripts/apply_smart_scroll_debug_alpha.py
+      - name: Apply Smart Scroll v0.8 single jump
+        run: python3 scripts/apply_smart_scroll_v08.py
+      - name: Apply Smart Fit settings v0.9
+        run: python3 scripts/apply_smart_fit_settings_v09.py
+      - name: Add Smart Scroll to reader Reading mode menu
+        run: python3 scripts/apply_reader_quick_settings.py
+      - name: Apply Smart Scroll v0.10 safe page turn
+        run: python3 scripts/apply_smart_scroll_v010.py
+      - name: Apply Smart Scroll v0.11 smart back and top trim
+        run: python3 scripts/apply_smart_scroll_v011.py
+      - name: Apply Smart Scroll v0.12 precision
+        run: python3 scripts/apply_smart_scroll_v012.py
+      - name: Apply Smart Scroll v0.13 continuity
+        run: python3 scripts/apply_smart_scroll_v013.py
+      - name: Apply Smart Scroll v0.14 source image analysis
+        run: python3 scripts/apply_smart_scroll_v014.py
+      - name: Apply Smart Scroll v0.15 simple bottom scan
+        run: python3 scripts/apply_smart_scroll_v015.py
+      - name: Apply Smart Scroll v0.16 gap landing
+        run: python3 scripts/apply_smart_scroll_v016.py
+      - name: Apply Smart Scroll v0.17 image boundary guard
+        run: python3 scripts/apply_smart_scroll_v017.py
+      - name: Apply Smart Scroll v0.18 remove Top Trim
+        run: python3 scripts/apply_smart_scroll_v018.py
+      - name: Fix stale reader Top Trim setting
+        run: python3 scripts/apply_smart_scroll_v0181.py
+      - name: Apply revised v0.17 navigation
+        run: python3 scripts/apply_smart_scroll_v017r.py
+      - name: Apply v0.19 boundary destination correction
+        run: python3 scripts/apply_smart_scroll_v019.py
+      - name: Apply v0.20 offset-based boundary scan
+        run: python3 scripts/apply_smart_scroll_v020.py
+      - name: Trace v0.20 destination coordinates
+        run: python3 scripts/apply_smart_scroll_v020d.py
+      - name: Diagnose offset scan rejection reasons
+        run: python3 scripts/apply_smart_scroll_v020d2.py
+      - name: Unify webtoon strip navigation v0.21
+        run: python3 scripts/apply_smart_scroll_v021.py
+      - name: Restore Top Trim v0.22
+        run: python3 scripts/apply_smart_scroll_v022.py
+      - name: Visual Debug meaningful markers v0.23
+        run: python3 scripts/apply_smart_scroll_v023.py
+      - name: Apply bounded lookahead v0.24
+        run: python3 scripts/apply_smart_scroll_v024.py
+      - name: Apply extended scan diagnostics v0.25
+        run: python3 scripts/apply_smart_scroll_v025.py
+      - name: Apply first-safe-gutter scan v0.26
+        run: python3 scripts/apply_smart_scroll_v026.py
+      - name: Apply content-aware gutter v0.27
+        run: python3 scripts/apply_smart_scroll_v027.py
+      - name: Apply repeat-from-partial v0.28
+        run: python3 scripts/apply_smart_scroll_v028.py
+      - name: Apply visible-gutter navigation v0.29
+        run: python3 scripts/apply_smart_scroll_v029.py
+      - name: Apply 99-percent gutter pixel fix v0.30
+        run: python3 scripts/apply_smart_scroll_v030.py
+      - name: Hide Top Trim controls v0.31
+        run: python3 scripts/apply_smart_scroll_v031.py
+      - name: Apply full-resolution landing refinement v0.32
+        run: python3 scripts/apply_smart_scroll_v032.py
+      - name: Apply thin-seam refinement v0.33
+        run: python3 scripts/apply_smart_scroll_v033.py
+      - name: Remove refine and round gutter upward v0.34
+        run: python3 scripts/apply_smart_scroll_v034.py
+      - name: Apply 3px gutter margin v0.35
+        run: python3 scripts/apply_smart_scroll_v035.py
+      - name: Reject isolated ink borders v0.36
+        run: python3 scripts/apply_smart_scroll_v036.py
+      - name: Search 50 percent past viewport after isolated line v0.37
+        run: python3 scripts/apply_smart_scroll_v037.py
+      - name: Preserve borders and find first content v0.38
+        run: python3 scripts/apply_smart_scroll_v038.py
+      - name: Detect rectangle tops and debug v0.39
+        run: python3 scripts/apply_smart_scroll_v039.py
+      - name: Rectangle geometry diagnostics v0.40
+        run: python3 scripts/apply_smart_scroll_v040.py
+      - name: Protect rectangle tops v0.41
+        run: python3 scripts/apply_smart_scroll_v041.py
+      - name: Mechanical line preservation v0.42
+        run: python3 scripts/apply_smart_scroll_v042.py
+      - name: Mechanical line context v0.43
+        run: python3 scripts/apply_smart_scroll_v043.py
+      - name: Resume after full passed line v0.45
+        run: python3 scripts/apply_smart_scroll_v045.py
+      - name: Apply closing-border guard v0.46
+        run: python3 scripts/apply_smart_scroll_v046.py
+      - name: Apply first post-PASSED gap v0.47
+        run: python3 scripts/apply_smart_scroll_v047.py
+      - name: Apply earliest post-PASSED gap v0.48
+        run: python3 scripts/apply_smart_scroll_v048.py
+      # Rebuild v0.49 after repairing the Python syntax error
+      - name: Apply post-PASSED landing v0.49
+        run: python3 scripts/apply_smart_scroll_v049.py
+      - name: Post-PASSED next content guard v0.50
+        run: python3 scripts/apply_smart_scroll_v050.py
+      - name: Extended preserved top v0.51
+        run: python3 scripts/apply_smart_scroll_v051.py
+      - name: Smart Fit diagnostic with colored boundary v0.52 (method hook retry)
+        run: python3 scripts/apply_smart_fit_v052.py
+      - name: Smart Fit viewport separator probe v0.53
+        run: python3 scripts/apply_smart_fit_v053.py
+      - name: Smart Fit viewport-zero probe v0.54
+        run: python3 scripts/apply_smart_fit_v054.py
+      - name: Experimental live Smart Fit v0.55 (hook fix)
+        run: python3 scripts/apply_smart_fit_v055.py
+      - name: Proportional Smart Fit and white-gap trim v0.56
+        run: python3 scripts/apply_smart_fit_v056.py
+      - name: Adaptive Smart Fit side background v0.57
+        run: python3 scripts/apply_smart_fit_v057.py
+      - name: Long white gap fit v0.58
+        run: python3 scripts/apply_smart_fit_v058.py
+      - name: Align Next after Smart Fit v0.59 (restore helper)
+        run: python3 scripts/apply_smart_fit_v059.py
+      - name: Movement debug v0.60 (no navigation changes)
+        run: python3 scripts/apply_smart_debug_v060.py
+      - name: Deep movement diagnostics v0.61 (no navigation changes)
+        run: python3 scripts/apply_smart_debug_v061.py
+      - name: Recheck Smart Fit source coordinates v0.62
+        run: python3 scripts/apply_smart_fit_v062.py
+      - name: Smart Fit visible interruption standby v0.63
+        run: python3 scripts/apply_smart_fit_v063.py
+      - name: Isolate Fit standby from SUPER SAFE v0.68
+        run: python3 scripts/apply_smart_scroll_v068.py
+      # Rebuild after v0.69 patch assertion fix (3705ee3)
+      - name: Independent Smart Scroll preserved lookahead v0.69
+        run: python3 scripts/apply_smart_scroll_v069.py
+      - name: First rejected gutter diagnostics v0.70
+        run: python3 scripts/apply_smart_scroll_v070.py
+      # Retry after v0.71 anchor correction (e09d365)
+      - name: Complete current gap using Smart Scroll lookahead v0.71
+        run: python3 scripts/apply_smart_scroll_v071.py
+      - name: Restore 100 percent normal fallback v0.72
+        run: python3 scripts/apply_smart_scroll_v072.py
+      - name: First ink after FIT ART v0.73
+        run: python3 scripts/apply_smart_fit_v073.py
+      - name: Remove FIT NEXT 8px padding v0.74
+        run: python3 scripts/apply_smart_fit_v074.py
+      - name: Backward checkpoint history v0.75
+        run: python3 scripts/apply_smart_scroll_v075.py
+      # Retry v0.76 after correcting FIT_NEXT diagnostic anchor
+      - name: Guard previous-art sliver after FIT NEXT v0.76
+        run: python3 scripts/apply_smart_fit_v076.py
+      - name: FIT NEXT geometry diagnostics v0.77
+        run: python3 scripts/apply_smart_fit_v077.py
+      - name: Strip debug UI and optimize production v0.78
+        run: python3 scripts/apply_smart_scroll_production_v078.py
+      - name: Restrict test builds to arm64-v8a
+        run: python3 scripts/apply_arm64_only.py
+      - name: Restore permanent signing key
+        env:
+          KEYSTORE_B64: ${{ secrets.MIHON_KEYSTORE_BASE64 }}
+          KEYSTORE_PASSWORD: ${{ secrets.MIHON_KEYSTORE_PASSWORD }}
+          KEY_ALIAS: ${{ secrets.MIHON_KEY_ALIAS }}
+        run: |
+          python3 - <<'PY'
+          import base64, os, pathlib
+          encoded = os.environ['KEYSTORE_B64'].strip()
+          if not encoded or not os.environ['KEYSTORE_PASSWORD'] or not os.environ['KEY_ALIAS']:
+              raise SystemExit('Missing signing secret')
+          encoded = ''.join(x for x in encoded.splitlines() if not x.startswith('-----'))
+          pathlib.Path('mihon-smart-scroll.jks').write_bytes(base64.b64decode(encoded, validate=True))
+          PY
+      - name: Build optimized signed release APK
+        env:
+          MIHON_GITHUB_RELEASE: "true"
+          storeFile: ${{ github.workspace }}/mihon-smart-scroll.jks
+          storePassword: ${{ secrets.MIHON_KEYSTORE_PASSWORD }}
+          keyAlias: ${{ secrets.MIHON_KEY_ALIAS }}
+          keyPassword: ${{ secrets.MIHON_KEYSTORE_PASSWORD }}
+        run: chmod +x gradlew && ./gradlew assembleRelease --no-daemon
+      - name: Verify signature
+        run: |
+          for apk in app/build/outputs/apk/release/*.apk; do
+            "${ANDROID_HOME}/build-tools/36.0.0/apksigner" verify --verbose "$apk"
+          done
+      - uses: actions/upload-artifact@v4
+        with:
+          name: mihon-smart-scroll-v0.78-production-arm64-signed
+          path: app/build/outputs/apk/release/*arm64-v8a*.apk
+          if-no-files-found: error
