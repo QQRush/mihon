@@ -10,7 +10,7 @@
 [![Development APK](https://github.com/QQRush/mihon/actions/workflows/smart-scroll-apk.yml/badge.svg?branch=feature%2Fsmart-scroll)](https://github.com/QQRush/mihon/actions/workflows/smart-scroll-apk.yml)
 [![License: Apache-2.0](https://img.shields.io/badge/license-Apache--2.0-blue)](LICENSE)
 
-[Download](#download) · [Features](#features) · [Setup](#getting-started) · [How it works](#how-it-works) · [Credits](#credits)
+[Download](#download) · [Video comparison](#video-comparison) · [Features](#features) · [Setup](#getting-started) · [How it works](#how-it-works) · [Credits](#credits)
 
 </div>
 
@@ -22,6 +22,14 @@
 Conventional webtoon scrolling advances by a fixed distance. This can leave a large blank area at the top of the screen or split a speech balloon or drawing across two views. Smart Scroll aims to find suitable visual transitions and move the next content toward the top, while preserving reading continuity.
 
 It is particularly useful on **E-Ink readers**, where instantaneous, predictable taps are preferable to animated scrolling. It can also be used on conventional Android phones and tablets.
+
+## Video comparison
+
+See **Mihon Original (left)** and **Mihon Smart Scroll (right)** running side by side with synchronized taps. The comparison shows how Smart Scroll changes the reading position after each tap.
+
+[![Watch the synchronized Original vs Smart Scroll comparison](https://img.youtube.com/vi/fLswQOU9exM/maxresdefault.jpg)](https://www.youtube.com/watch?v=fLswQOU9exM)
+
+**[▶ Watch the side-by-side comparison on YouTube](https://www.youtube.com/watch?v=fLswQOU9exM)**
 
 ## Features
 
