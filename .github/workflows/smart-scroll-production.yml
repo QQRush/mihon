@@ -9,7 +9,7 @@ concurrency:
   group: smart-scroll-production-${{ github.ref }}
   cancel-in-progress: true
 permissions:
-  contents: read
+  contents: write
 jobs:
   apk:
     runs-on: ubuntu-latest
@@ -218,3 +218,19 @@ jobs:
           name: mihon-smart-scroll-v0.79-production-arm64-signed
           path: app/build/outputs/apk/release/*arm64-v8a*.apk
           if-no-files-found: error
+      - name: Publish v0.79 GitHub Release
+        env:
+          GH_TOKEN: ${{ github.token }}
+          GH_REPO: ${{ github.repository }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          mapfile -d '' apks < <(find app/build/outputs/apk/release -type f -name '*arm64-v8a*.apk' -print0)
+          test "${#apks[@]}" -eq 1
+          mkdir -p dist
+          cp "${apks[0]}" dist/Mihon-Smart-Scroll-v0.79-arm64.apk
+          (cd dist && sha256sum Mihon-Smart-Scroll-v0.79-arm64.apk > SHA256SUMS.txt)
+          gh release create v0.79-smart-scroll dist/Mihon-Smart-Scroll-v0.79-arm64.apk dist/SHA256SUMS.txt \
+            --target "${{ github.sha }}" \
+            --title "Mihon Smart Scroll v0.79 — Production" \
+            --notes "Maintenance release: removes the remaining Visual Debug switch from the reader's Reading mode menu. Smart Scroll, Smart Fit, safe content detection and backward navigation are unchanged. Signed optimized ARM64 APK; package app.mihon.dev. Unofficial Mihon fork."
