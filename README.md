@@ -39,9 +39,11 @@ It is particularly useful on **E-Ink readers**, where instantaneous, predictable
 
 ## Download
 
-**[Download Mihon Smart Scroll v0.78 — Production APK](https://github.com/QQRush/mihon/releases/tag/v0.78-smart-scroll)**
+**[Download Mihon Smart Scroll v0.79 — Production APK](https://github.com/QQRush/mihon/releases/tag/v0.79-smart-scroll)**
 
-Open the release page, then under **Assets** download `Mihon-Smart-Scroll-v0.78-arm64.apk`. You can also download `SHA256SUMS.txt` to verify the file.
+Open the release page, then under **Assets** download `Mihon-Smart-Scroll-v0.79-arm64.apk`. You can also download `SHA256SUMS.txt` to verify the file.
+
+Version v0.79 removes the remaining Visual Debug checkbox from the in-reader Reading mode menu, without changing the Smart Scroll or Smart Fit algorithms.
 
 The production APK is signed, optimized with R8, and supports **ARM64 Android devices**. Its package ID is `app.mihon.dev`, separate from official Mihon; upgrades require the same signing key. Back up your library before installing or upgrading.
 
@@ -77,7 +79,7 @@ The current working development branch is [`feature/smart-scroll`](https://githu
 - [Patch scripts](scripts/): incremental Python patches used by the GitHub Actions build.
 - [Upstream Mihon](https://github.com/mihonapp/mihon): original reader and general app functionality.
 
-The production variant is based on the **v0.77 behavior**, with a v0.78 production packaging pass. Removing the diagnostic view does **not** remove the underlying scanner, which is used by Smart Scroll and Smart Fit.
+The production variant is based on the **v0.77 behavior**, with v0.78 production packaging and the v0.79 quick-settings cleanup. Removing the diagnostic view does **not** remove the underlying scanner, which is used by Smart Scroll and Smart Fit.
 
 For reproducibility, inspect the workflow and its referenced patch scripts. This branch currently applies patches sequentially rather than storing all Smart Scroll modifications directly in the base Kotlin sources.
 
