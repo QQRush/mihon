@@ -27,7 +27,7 @@ It is particularly useful on **E-Ink readers**, where instantaneous, predictable
 
 See **Mihon Original (left)** and **Mihon Smart Scroll (right)** running side by side with synchronized taps. The comparison shows how Smart Scroll changes the reading position after each tap.
 
-[![Watch the synchronized Original vs Smart Scroll comparison](https://img.youtube.com/vi/oieYZLV3K3A/maxresdefault.jpg)](https://www.youtube.com/watch?v=oieYZLV3K3A)
+[![Mihon Smart Scroll — watch the synchronized comparison](.github/assets/smart-scroll-banner.png)](https://youtube.com/shorts/oieYZLV3K3A)
 
 **[▶ Watch the side-by-side comparison on YouTube](https://www.youtube.com/watch?v=oieYZLV3K3A)**
 
